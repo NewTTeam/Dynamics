@@ -25,7 +25,7 @@ jobs:
         run: npm install -g prettier
 
       - name: Run Prettier on .md and .txt files
-        run: prettier --write "**/*.{md,txt}"
+        run: prettier --write "**/*.{md,txt}" --ignore-unknown
 
       - name: Commit formatted files
         uses: stefanzweifel/git-auto-commit-action@v5
