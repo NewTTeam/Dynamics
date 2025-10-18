@@ -1,4 +1,4 @@
-name: Auto Format Markdown and Text
+name: Check and Format Markdown/Text
 
 on:
   push:
@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -24,11 +22,8 @@ jobs:
       - name: Install Prettier
         run: npm install -g prettier
 
-      - name: Run Prettier on .md and .txt files
+      - name: Run Prettier
         run: prettier --write "**/*.{md,txt}" --ignore-unknown
 
-      - name: Commit formatted files
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: auto-format markdown and text files"
-          branch: ${{ github.head_ref || github.ref_name }}
+      - name: Check formatting
+        run: prettier --check "**/*.{md,txt}" --ignore-unknown
