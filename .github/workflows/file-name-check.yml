@@ -1,0 +1,18 @@
+name: File name check
+
+on:
+  pull_request:
+
+jobs:
+  file-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check file names
+        run: |
+          for f in $(git diff --name-only origin/main...HEAD); do
+            if [[ "$f" =~ [A-Z] ]]; then
+              echo "Error! File '$f' contains uppercase letters!"
+              exit 1
+            fi
+          done
