@@ -22,7 +22,7 @@
 .md-toggle {
   display: block;
 
-	margin: 10px auto;
+	/* margin-top: 30px; */
   width: 900px;
   text-align: left;
   background-color: white;
@@ -116,6 +116,7 @@
   max-height: 2500px;
   opacity: 1;
   padding: 1rem;
+	margin-bottom: 30px;
 }
 
 .md-wrapper.active .md-toggle::after {
