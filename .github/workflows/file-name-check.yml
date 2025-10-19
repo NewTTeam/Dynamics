@@ -1,10 +1,12 @@
-name: File name check
+name: File Name Check
 
 on:
   pull_request:
+    branches: [main, develop]
 
 jobs:
   file-check:
+    name: File Name Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
