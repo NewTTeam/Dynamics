@@ -13,23 +13,54 @@ menuLinks.forEach((link) => {
   });
 });
 
-// async function parseNaming(elem) {
-// 	console.log(1)
-//   try {
-//     const res = await fetch('docs/howtoname.md'); // если index.html тоже в docs
-//     if (!res.ok) throw new Error(`Ошибка загрузки: ${res.status}`);
-//     const text = await res.text();
-//     elem.innerHTML = marked.parse(text);
-// 		console.log(marked.parse(text))
-//   } catch (err) {
-//     console.error(err);
-//     if (elem)
-//       elem.innerHTML = `<p style="color:red">Не удалось загрузить файл: ${err.message}</p>`;
-//   }
-// }
+document.querySelectorAll('.md-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const wrapper = btn.parentElement;
+    wrapper.classList.toggle('active');
+  });
+});
 
-// window.addEventListener('DOMContentLoaded', () => {
-//   const target = document.getElementById('md-content');
-//   if (target) parseNaming(target);
-// });
+async function parseNaming(elem) {
+  try {
+    const res = await fetch("howtoname.md");
+    if (!res.ok) throw new Error(`Ошибка загрузки: ${res.status}`);
+    const text = await res.text();
+    elem.innerHTML = marked.parse(text);
+  } catch (err) {
+    console.error(err);
+    elem.innerHTML = `<p style="color:red">Не удалось загрузить файл: ${err.message}</p>`;
+  }
+}
+async function parseBranching(elem) {
+  try {
+    const res = await fetch("howtobranch.md");
+    if (!res.ok) throw new Error(`Ошибка загрузки: ${res.status}`);
+    const text = await res.text();
+    elem.innerHTML = marked.parse(text);
+  } catch (err) {
+    console.error(err);
+    elem.innerHTML = `<p style="color:red">Не удалось загрузить файл: ${err.message}</p>`;
+  }
+}
+async function parseApproval(elem) {
+  try {
+    const res = await fetch("howtoapprove.md");
+    if (!res.ok) throw new Error(`Ошибка загрузки: ${res.status}`);
+    const text = await res.text();
+    elem.innerHTML = marked.parse(text);
+  } catch (err) {
+    console.error(err);
+    elem.innerHTML = `<p style="color:red">Не удалось загрузить файл: ${err.message}</p>`;
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const targetName = document.querySelector('.naming-content');
+  if (targetName) parseNaming(targetName);
+	const targetBranch = document.querySelector('.branching-content');
+  if (targetBranch) parseBranching(targetBranch);
+	const targetApprove = document.querySelector('.approval-content');
+  if (targetApprove) parseApproval(targetApprove);
+});
+
 

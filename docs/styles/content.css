@@ -1,0 +1,123 @@
+#docs {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 30px;
+}
+
+.md-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#md-content .md-wrapper {
+  max-width: 900px;
+  margin: 2rem auto;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+
+
+.md-toggle {
+  display: block;
+
+	margin: 10px auto;
+  width: 900px;
+  text-align: left;
+  background-color: white;
+  color: #000000;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+}
+
+.md-toggle::after {
+  content: " ▸";
+  float: right;
+  transition: transform 0.3s ease;
+}
+
+#md-content {
+	width: 900px;
+	box-sizing: border-box;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.3s ease;
+  padding: 0 1rem;
+  margin-top: 0.5rem;
+  background: #ffffffcc;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  line-height: 1.6;
+}
+
+#md-content h3,
+#md-content h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+#md-content ul,
+#md-content ol {
+  margin: 0.6rem 0 1.2rem 1.5rem;
+  padding-left: 1rem;
+}
+
+#md-content li {
+  margin-bottom: 0.4rem;
+}
+
+#md-content table {
+  width: 70%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+#md-content th,
+#md-content td {
+  border: 1px solid #e0e0e0;
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+
+#md-content code {
+  background: #f4f4f4;
+  color: #d63384;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+#md-content hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 2rem 0;
+  opacity: 0.6;
+}
+
+#md-content a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+#md-content a:hover {
+  text-decoration: underline;
+}
+
+.md-wrapper.active #md-content {
+  max-height: 2500px;
+  opacity: 1;
+  padding: 1rem;
+}
+
+.md-wrapper.active .md-toggle::after {
+  transform: rotate(90deg);
+}

@@ -6,23 +6,32 @@
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/bottom-menu.css" />
     <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/content.css" />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   </head>
   <body>
     <header>
       <header id="header">
         <h1 class="header__title">О нашем проекте</h1>
-        <h4 class="header__description">
-          Это краткое описание проекта и команды
-        </h4>
+        <h4 class="header__description">Это краткое описание проекта</h4>
       </header>
     </header>
 
     <main>
       <section id="content"></section>
       <section id="docs">
-        <div id="md-content" class="naming">Загрузка...</div>
-
+        <div class="md-wrapper">
+          <button class="md-toggle">Naming docs ▸</button>
+          <div id="md-content" class="naming-content"></div>
+        </div>
+        <div class="md-wrapper">
+          <button class="md-toggle">Braching docs ▸</button>
+          <div id="md-content" class="branching-content"></div>
+        </div>
+        <div class="md-wrapper">
+          <button class="md-toggle">Approval docs ▸</button>
+          <div id="md-content" class="approval-content"></div>
+        </div>
       </section>
 
       <div class="bottom-menu" id="bottomMenu">
@@ -32,33 +41,13 @@
         <a href="#content">
           <img src="assets/content.png" alt="Content" />
         </a>
-        <a href="#docs">
+        <!-- <a href="#docs">
           <img src="assets/gallery.png" alt="Gallery" />
-        </a>
+        </a> -->
       </div>
     </main>
 
     <footer></footer>
     <script src="scripts/script.js"></script>
-    <script>
-      async function parseNaming(elem) {
-				console.log(1)
-        try {
-          const res = await fetch("howtoname.md"); // если index.html тоже в docs
-          if (!res.ok) throw new Error(`Ошибка загрузки: ${res.status}`);
-          const text = await res.text();
-          elem.innerHTML = marked.parse(text);
-          console.log(marked.parse(text));
-        } catch (err) {
-          console.error(err);
-          if (elem)
-            elem.innerHTML = `<p style="color:red">Не удалось загрузить файл: ${err.message}</p>`;
-        }
-      }
-      window.addEventListener("DOMContentLoaded", () => {
-        const target = document.getElementById("md-content");
-        if (target) parseNaming(target);
-      });
-    </script>
   </body>
 </html>
