@@ -1,4 +1,4 @@
-name: Markdown/Text Autoformat & Check
+name: Markdown/Text Format
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   format:
-    name: Markdown/Text Check
+    name: Check & Autoformat Markdown/Text
     runs-on: ubuntu-latest
 
     steps:
@@ -23,9 +23,10 @@ jobs:
       - name: Install Prettier
         run: npm install -g prettier
 
-      - name: Check formatting
+      - name: Check formatting (PR)
+        if: github.event_name == 'pull_request'
         run: prettier --check "**/*.{md,txt}" --ignore-unknown
 
-      - name: Autoformat files
+      - name: Autoformat files (Push)
         if: github.event_name == 'push'
         run: prettier --write "**/*.{md,txt}" --ignore-unknown
