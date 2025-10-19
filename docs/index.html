@@ -4,15 +4,14 @@
     <meta charset="UTF-8" />
     <title>Мой сайт</title>
     <link rel="stylesheet" href="styles/style.css" />
-		<link rel="stylesheet" href="styles/bottom-menu.css">
-		<link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/bottom-menu.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   </head>
   <body>
     <header>
       <header id="header">
-        <h1 class="header__title">
-          О нашем проекте
-        </h1>
+        <h1 class="header__title">О нашем проекте</h1>
         <h4 class="header__description">
           Это краткое описание проекта и команды
         </h4>
@@ -20,12 +19,10 @@
     </header>
 
     <main>
-			<section id="content">
-
-			</section>
-			<section id="docs">
-
-			</section>
+      <section id="content"></section>
+      <section id="docs">
+        <div id="md-content naming">Загрузка...</div>
+      </section>
 
       <div class="bottom-menu" id="bottomMenu">
         <a href="#header">
@@ -38,11 +35,14 @@
           <img src="assets/gallery.png" alt="Gallery" />
         </a>
       </div>
-
-
     </main>
 
     <footer></footer>
     <script src="scripts/script.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        parseNaming(document.getElementById("md-content"));
+      });
+    </script>
   </body>
 </html>

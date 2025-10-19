@@ -12,3 +12,17 @@ menuLinks.forEach((link) => {
     }
   });
 });
+
+async function parseNaming(elem) {
+  try {
+    const res = await fetch("docs/howtoname.md");
+    if (!res.ok) throw new Error(`Ошибка загрузки: ${res.status}`);
+    const text = await res.text();
+    elem.innerHTML = marked.parse(text);
+		console.log(marked.parse(text))
+  } catch (err) {
+    elem.innerHTML = `<p style="color:red">Не удалось загрузить файл: ${err.message}</p>`;
+  }
+}
+
+parseNaming(document.getElementById("md-content"));
