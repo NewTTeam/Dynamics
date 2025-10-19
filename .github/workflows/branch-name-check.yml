@@ -1,15 +1,17 @@
-name: Branch name check
+name: Branch Name Check
 
 on:
   pull_request:
+    branches: [main, develop]
 
 jobs:
   branch-name:
+    name: Branch Name Check
     runs-on: ubuntu-latest
     steps:
       - name: Check branch name
         run: |
-          if [[ ! "${GITHUB_HEAD_REF}" =~ ^(feature|bugfix|hotfix)/[a-z0-9-]+$ ]]; then
+          if [[ ! "${GITHUB_HEAD_REF}" =~ ^(feature|bugfix|hotfix|docs|refactor|test)/[a-z0-9-]+$ ]]; then
             echo "Error! Branch name '${GITHUB_HEAD_REF}' does not match the pattern"
             exit 1
           fi

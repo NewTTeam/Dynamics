@@ -1,15 +1,13 @@
 name: Check and Format Markdown/Text
 
 on:
-  push:
-    branches: [ main, develop ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   format:
+    name: Check and Format Markdown/Text
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
