@@ -15,7 +15,7 @@ menuLinks.forEach((link) => {
 
 async function parseNaming(elem) {
   try {
-    const res = await fetch('./howtoname.md'); // если index.html тоже в docs
+    const res = await fetch('docs/howtoname.md'); // если index.html тоже в docs
     if (!res.ok) throw new Error(`Ошибка загрузки: ${res.status}`);
     const text = await res.text();
     elem.innerHTML = marked.parse(text);
