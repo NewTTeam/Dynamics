@@ -15,14 +15,19 @@ menuLinks.forEach((link) => {
 
 async function parseNaming(elem) {
   try {
-    const res = await fetch("docs/howtoname.md");
+    const res = await fetch('./howtoname.md'); // если index.html тоже в docs
     if (!res.ok) throw new Error(`Ошибка загрузки: ${res.status}`);
     const text = await res.text();
     elem.innerHTML = marked.parse(text);
-		console.log(marked.parse(text))
   } catch (err) {
-    elem.innerHTML = `<p style="color:red">Не удалось загрузить файл: ${err.message}</p>`;
+    console.error(err);
+    if (elem)
+      elem.innerHTML = `<p style="color:red">Не удалось загрузить файл: ${err.message}</p>`;
   }
 }
 
-parseNaming(document.getElementById("md-content"));
+window.addEventListener('DOMContentLoaded', () => {
+  const target = document.getElementById('md-content');
+  if (target) parseNaming(target);
+});
+
