@@ -1,13 +1,16 @@
-name: Check and Format Markdown/Text
+name: Markdown/Text Autoformat & Check
 
 on:
   pull_request:
     branches: [main, develop]
+  push:
+    branches: [main, develop]
 
 jobs:
   format:
-    name: Check and Format Markdown/Text
+    name: Markdown/Text Check
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -17,11 +20,11 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Prettier
-        run: npm install -g prettier
-
-      - name: Run Prettier
-        run: prettier --write "**/*.{md,txt}" --ignore-unknown
-
+      # 1️⃣ Статическая проверка (для Branch Protection)
       - name: Check formatting
         run: prettier --check "**/*.{md,txt}" --ignore-unknown
+
+      # 2️⃣ Автоформатирование только при push
+      - name: Autoformat files
+        if: github.event_name == 'push'
+        run: prettier --write "**/*.{md,txt}" --ignore-unknown
