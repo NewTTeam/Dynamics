@@ -31,3 +31,4 @@ jobs:
         run: |
           echo "Checking formatting (will not fail CI)..."
           prettier --check "**/*.{md,txt}" --ignore-unknown || true
+
