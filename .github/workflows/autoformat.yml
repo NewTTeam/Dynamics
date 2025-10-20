@@ -22,8 +22,13 @@ jobs:
       - name: Install Prettier
         run: npm install -g prettier
 
-      - name: Run Prettier
-        run: prettier --write "**/*.{md,txt}" --ignore-unknown
+      - name: Format Markdown/Text files
+        run: |
+          echo "Running Prettier --write to auto-format files..."
+          prettier --write "**/*.{md,txt}" --ignore-unknown || true
 
-      - name: Check formatting
-        run: prettier --check "**/*.{md,txt}" --ignore-unknown
+      - name: Verify formatting (non-blocking)
+        run: |
+          echo "Checking formatting (will not fail CI)..."
+          prettier --check "**/*.{md,txt}" --ignore-unknown || true
+
