@@ -1,0 +1,10 @@
+header {
+  margin: 0 auto;
+  width: 70vw;
+  text-align: center;
+  min-width: 400px;
+}
+header h1 {
+  margin: 20px;
+	font-size: 4rem;
+}

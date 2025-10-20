@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+	
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: linear-gradient(320deg, #dcdcdc, #ececec);
+  min-height: 100vh;
+}
+
+main {
+  margin: 0 auto;
+}
+
